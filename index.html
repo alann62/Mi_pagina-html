@@ -6,6 +6,28 @@
   <title>HidraReco | Tratamiento de efluentes industriales</title>
   <meta name="description" content="Instalación, operación y mantenimiento de plantas de tratamiento de efluentes para la industria. Cumplimiento normativo garantizado. Presupuesto sin cargo.">
 
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- ============================================================
+       Open Graph / Twitter Card — preview al compartir por WhatsApp,
+       redes sociales, etc.
+       TODO: reemplazar https://TU-DOMINIO.com por el dominio real
+       una vez publicado el sitio.
+       ============================================================ -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="HidraReco">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="HidraReco | Tratamiento de efluentes industriales">
+  <meta property="og:description" content="Instalación, operación y mantenimiento de plantas de tratamiento de efluentes para la industria. Presupuesto sin cargo.">
+  <meta property="og:image" content="https://TU-DOMINIO.com/img/og-image.jpg">
+  <meta property="og:url" content="https://TU-DOMINIO.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HidraReco | Tratamiento de efluentes industriales">
+  <meta name="twitter:description" content="Instalación, operación y mantenimiento de plantas de tratamiento de efluentes para la industria. Presupuesto sin cargo.">
+  <meta name="twitter:image" content="https://TU-DOMINIO.com/img/og-image.jpg">
+
   <!-- ============================================================
        Google Tag Manager
        TODO: reemplazar GTM-XXXXXXX por el ID real del contenedor.
@@ -376,19 +398,19 @@
 
           <div class="form-row">
             <label for="nombre">Nombre y apellido *</label>
-            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" aria-describedby="error-nombre" required>
             <span class="field-error" id="error-nombre" role="alert"></span>
           </div>
 
           <div class="form-row">
             <label for="empresa">Empresa *</label>
-            <input type="text" id="empresa" name="empresa" autocomplete="organization" required>
+            <input type="text" id="empresa" name="empresa" autocomplete="organization" aria-describedby="error-empresa" required>
             <span class="field-error" id="error-empresa" role="alert"></span>
           </div>
 
           <div class="form-row">
             <label for="rubro">Rubro *</label>
-            <select id="rubro" name="rubro" required>
+            <select id="rubro" name="rubro" aria-describedby="error-rubro" required>
               <option value="" selected disabled>Seleccioná tu rubro</option>
               <option value="alimenticia">Industria alimenticia</option>
               <option value="textil">Industria textil</option>
@@ -403,14 +425,14 @@
 
           <div class="form-row">
             <label for="mensaje">Contanos sobre tu proyecto *</label>
-            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+            <textarea id="mensaje" name="mensaje" rows="4" aria-describedby="error-mensaje" required></textarea>
             <span class="field-error" id="error-mensaje" role="alert"></span>
           </div>
 
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 
           <button type="submit" class="btn btn-accent btn-lg btn-block" id="form-submit">
-            Solicitar presupuesto sin cargo
+            <span id="form-submit-label">Solicitar presupuesto sin cargo</span>
           </button>
 
           <p class="form-legal">Al enviar este formulario aceptás ser contactado por HidraReco para elaborar tu propuesta.</p>

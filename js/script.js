@@ -15,7 +15,18 @@
   if (form) {
     var statusEl = document.getElementById('form-status');
     var submitBtn = document.getElementById('form-submit');
+    var submitLabel = document.getElementById('form-submit-label');
+    var submitLabelDefault = submitLabel.textContent;
     var redirectTo = form.getAttribute('data-redirect') || '/gracias/';
+
+    function setSubmitting(isSubmitting) {
+      submitBtn.disabled = isSubmitting;
+      if (isSubmitting) {
+        submitLabel.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span> Enviando...';
+      } else {
+        submitLabel.textContent = submitLabelDefault;
+      }
+    }
 
     var validators = {
       nombre: function (value) {
@@ -78,9 +89,9 @@
         return;
       }
 
-      statusEl.textContent = 'Enviando...';
+      statusEl.textContent = '';
       statusEl.setAttribute('data-state', '');
-      submitBtn.disabled = true;
+      setSubmitting(true);
 
       var formData = new FormData(form);
 
@@ -104,7 +115,7 @@
           statusEl.textContent =
             'No pudimos enviar el formulario. Escribinos por WhatsApp o intentá nuevamente en unos minutos.';
           statusEl.setAttribute('data-state', 'error');
-          submitBtn.disabled = false;
+          setSubmitting(false);
         });
     });
   }
