@@ -267,7 +267,11 @@ a { color: var(--color-accent); text-decoration: none; }
   background:
     linear-gradient(100deg, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.86) 38%, rgba(3, 105, 161, 0.55) 68%, rgba(3, 105, 161, 0.35) 100%),
     url("../img/hero-bg.jpg") center / cover no-repeat;
-  padding-block: var(--space-8) var(--space-7);
+  padding-block: var(--space-7) var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .hero { padding-block: var(--space-8) var(--space-7); }
 }
 
 @media (min-width: 1024px) {
@@ -284,15 +288,19 @@ a { color: var(--color-accent); text-decoration: none; }
   .hero-inner { grid-template-columns: minmax(0, 640px); }
 }
 
-.hero h1 { color: #FFFFFF; margin-bottom: var(--space-4); }
-.hero-subcopy { font-size: 1.05rem; max-width: 56ch; color: rgba(248, 250, 252, 0.88); }
+.hero h1 { color: #FFFFFF; margin-bottom: var(--space-3); font-size: clamp(1.75rem, 5.5vw + 0.5rem, 3.25rem); }
+.hero-subcopy { font-size: 0.98rem; max-width: 56ch; color: rgba(248, 250, 252, 0.88); }
 .hero .eyebrow { color: #7DD3FC; }
+
+@media (min-width: 640px) {
+  .hero-subcopy { font-size: 1.05rem; }
+}
 
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .hero-trust {
@@ -300,21 +308,22 @@ a { color: var(--color-accent); text-decoration: none; }
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 .hero-trust li {
   position: relative;
   padding-left: var(--space-5);
   font-weight: 600;
   color: rgba(248, 250, 252, 0.92);
-  font-size: 0.92rem;
+  font-size: 0.82rem;
 }
 .hero-trust li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 6px;
+  top: 4px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -323,7 +332,9 @@ a { color: var(--color-accent); text-decoration: none; }
 }
 
 @media (min-width: 640px) {
-  .hero-trust { flex-direction: row; flex-wrap: wrap; gap: var(--space-5); }
+  .hero-trust { gap: var(--space-2) var(--space-5); }
+  .hero-trust li { font-size: 0.92rem; }
+  .hero-trust li::before { top: 6px; }
 }
 
 /* ==========================================================================
