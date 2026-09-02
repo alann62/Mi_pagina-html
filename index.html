@@ -55,6 +55,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- ============================================================
+       Schema.org (JSON-LD) — para rich snippets en Google (dirección,
+       teléfono, horario, y las preguntas del FAQ desplegables en el
+       buscador). TODO: reemplazar https://TU-DOMINIO.com por el
+       dominio real una vez publicado el sitio.
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "HidraReco",
+    "description": "Instalación, operación y mantenimiento de plantas de tratamiento de efluentes para la industria.",
+    "url": "https://TU-DOMINIO.com/",
+    "telephone": "+5491126704249",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Industrial 1234, Parque Industrial",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta una planta de tratamiento de efluentes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Depende del caudal y el proceso productivo de tu industria, por eso no damos un precio de catálogo: visitamos tu planta, relevamos el efluente y te entregamos un presupuesto a medida, sin cargo y sin compromiso."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Tienen que interrumpir mi producción para instalar la planta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ejecutamos la obra y la puesta en marcha buscando la mínima interrupción posible de tu operación. El plan de obra y los tiempos se definen junto con vos durante la etapa de ingeniería y presupuesto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si mi planta actual no cumple con la normativa (ADA)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gestionamos la documentación y los parámetros exigidos por la Agencia de Agua para que tu planta opere dentro de norma, sin sobresaltos ante una inspección."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué incluye el servicio de operación y mantenimiento (O&M)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nos hacemos cargo de la operación diaria y el mantenimiento preventivo y correctivo de tu planta, con seguimiento de parámetros y reportes periódicos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿En qué rubros industriales tienen experiencia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trabajamos con industria alimenticia, textil, química, metalúrgica, curtiembres y frigoríficos, entre otros rubros con procesos que generan efluentes industriales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa después de enviar el formulario de contacto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Te contactamos en menos de 24 hs para coordinar una visita a tu planta. La visita, el relevamiento y el presupuesto no tienen cargo ni compromiso."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -81,6 +166,7 @@
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#por-que-elegirnos">Por qué elegirnos</a></li>
           <li><a href="#clientes">Clientes</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
@@ -312,6 +398,50 @@
         <div class="testimonial-card reveal" style="margin-top: var(--space-7);">
           <blockquote>"[Cita de un cliente sobre su experiencia trabajando con HidraReco]"</blockquote>
           <cite>[Nombre Apellido — Cargo, Empresa]</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PREGUNTAS FRECUENTES
+         ============================================================ -->
+    <section id="faq" class="section faq">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2>Lo que más nos preguntan antes de empezar</h2>
+        </div>
+
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>¿Cuánto cuesta una planta de tratamiento de efluentes?</summary>
+            <p>Depende del caudal y el proceso productivo de tu industria, por eso no damos un precio de catálogo: visitamos tu planta, relevamos el efluente y te entregamos un presupuesto a medida, sin cargo y sin compromiso.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>¿Tienen que interrumpir mi producción para instalar la planta?</summary>
+            <p>Ejecutamos la obra y la puesta en marcha buscando la mínima interrupción posible de tu operación. El plan de obra y los tiempos se definen junto con vos durante la etapa de ingeniería y presupuesto.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>¿Qué pasa si mi planta actual no cumple con la normativa (ADA)?</summary>
+            <p>Gestionamos la documentación y los parámetros exigidos por la Agencia de Agua para que tu planta opere dentro de norma, sin sobresaltos ante una inspección.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>¿Qué incluye el servicio de operación y mantenimiento (O&amp;M)?</summary>
+            <p>Nos hacemos cargo de la operación diaria y el mantenimiento preventivo y correctivo de tu planta, con seguimiento de parámetros y reportes periódicos.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>¿En qué rubros industriales tienen experiencia?</summary>
+            <p>Trabajamos con industria alimenticia, textil, química, metalúrgica, curtiembres y frigoríficos, entre otros rubros con procesos que generan efluentes industriales.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>¿Qué pasa después de enviar el formulario de contacto?</summary>
+            <p>Te contactamos en menos de 24&nbsp;hs para coordinar una visita a tu planta. La visita, el relevamiento y el presupuesto no tienen cargo ni compromiso.</p>
+          </details>
         </div>
       </div>
     </section>

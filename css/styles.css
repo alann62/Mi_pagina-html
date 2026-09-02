@@ -465,6 +465,61 @@ a { color: var(--color-accent); text-decoration: none; }
 .process-step p { color: #94A3B8; margin-bottom: 0; font-size: 0.95rem; }
 
 /* ==========================================================================
+   Preguntas frecuentes
+   ========================================================================== */
+
+.faq { background: var(--color-card); border-block: 1px solid var(--color-border); }
+
+.faq-list {
+  max-width: 760px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--color-primary);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform var(--transition-fast);
+}
+.faq-item[open] summary::after { content: "\2212"; }
+
+.faq-item summary:focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.faq-item p {
+  margin: var(--space-3) 0 0;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
    Testimonio (placeholder)
    ========================================================================== */
 
