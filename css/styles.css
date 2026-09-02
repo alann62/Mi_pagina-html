@@ -337,6 +337,19 @@ a { color: var(--color-accent); text-decoration: none; }
   .hero-trust li::before { top: 6px; }
 }
 
+.hero-brochure-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: rgba(248, 250, 252, 0.85);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.35);
+  padding-bottom: 2px;
+}
+.hero-brochure-link:hover { color: #FFFFFF; border-color: rgba(248, 250, 252, 0.7); }
+
 /* ==========================================================================
    Cards / Services
    ========================================================================== */
@@ -441,6 +454,8 @@ a { color: var(--color-accent); text-decoration: none; }
     background: rgba(255, 255, 255, 0.16);
     z-index: 0;
   }
+  .process-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .process-grid-3::before { left: calc(16.66% + 4px); right: calc(16.66% + 4px); }
 }
 
 .process-step { position: relative; z-index: 1; }
