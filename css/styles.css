@@ -264,10 +264,51 @@ a { color: var(--color-accent); text-decoration: none; }
 
 .hero {
   position: relative;
+  overflow: hidden;
+  padding-block: var(--space-7) var(--space-6);
+}
+
+/* Foto de fondo en su propia capa (no en .hero directo) para poder animarle
+   un zoom lento con transform -- no dispara layout, y el overflow:hidden de
+   arriba recorta lo que se pasa del borde. Queda quieta bajo
+   prefers-reduced-motion (regla global de arriba: animation-duration
+   0.01ms), como una foto fija normal. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background:
     linear-gradient(100deg, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.86) 38%, rgba(3, 105, 161, 0.55) 68%, rgba(3, 105, 161, 0.35) 100%),
     url("../img/hero-bg.jpg") center / cover no-repeat;
-  padding-block: var(--space-7) var(--space-6);
+  animation: hero-bg-breathe 24s ease-in-out infinite alternate;
+}
+
+/* Brillo que se desliza en diagonal sobre el agua, como el sol reflejando
+   en la superficie -- dan la sensación de que el agua se mueve sin
+   necesitar un video. mix-blend-mode la funde con la foto de abajo. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.22) 50%, transparent 65%);
+  background-size: 260% 260%;
+  background-position: 0% 0%;
+  mix-blend-mode: overlay;
+  animation: hero-shimmer-sweep 7s linear infinite;
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+@keyframes hero-bg-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes hero-shimmer-sweep {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
 }
 
 @media (min-width: 640px) {
