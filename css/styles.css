@@ -479,6 +479,72 @@ a { color: var(--color-accent); text-decoration: none; }
 .process-step h3 { color: var(--color-on-primary); }
 .process-step p { color: #94A3B8; margin-bottom: 0; font-size: 0.95rem; }
 
+/* Efecto "video" al scrollear: la línea del proceso se dibuja en verde y cada
+   número se enciende en secuencia a medida que el usuario baja -- mejora
+   progresiva pura en CSS. Sin soporte para scroll-driven animations, o con
+   prefers-reduced-motion, el grid queda exactamente como estaba: la línea
+   gris fija de siempre y los 3 números ya visibles, nada oculto. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* El timeline se ancla a TODA la sección (título + grid), no solo a la fila
+       de números -- la fila sola mide ~150px y el efecto se completaría en un
+       parpadeo. Con la sección entera (~470px) el scroll rinde bien. */
+    .process {
+      view-timeline-name: --process-reveal;
+      view-timeline-axis: block;
+    }
+
+    .process-grid-3::after {
+      content: "";
+      position: absolute;
+      top: 26px;
+      left: calc(16.66% + 4px);
+      right: calc(16.66% + 4px);
+      height: 2px;
+      background: var(--color-green);
+      transform-origin: left center;
+      transform: scaleX(0);
+      z-index: 0;
+      animation-name: process-line-draw;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --process-reveal;
+      animation-range: 15% 75%;
+    }
+
+    .process-grid-3 .process-step-number {
+      transform: scale(0.82);
+      opacity: 0.55;
+      animation-name: process-step-light-up;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: both;
+      animation-timeline: --process-reveal;
+    }
+    .process-grid-3 .process-step:nth-child(1) .process-step-number {
+      animation-range: 5% 35%;
+    }
+    .process-grid-3 .process-step:nth-child(2) .process-step-number {
+      animation-range: 30% 60%;
+    }
+    .process-grid-3 .process-step:nth-child(3) .process-step-number {
+      animation-range: 55% 85%;
+    }
+  }
+}
+
+@keyframes process-line-draw {
+  to { transform: scaleX(1); }
+}
+
+@keyframes process-step-light-up {
+  to {
+    transform: scale(1);
+    opacity: 1;
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 4px rgba(92, 122, 59, 0.25);
+  }
+}
+
 /* ==========================================================================
    Preguntas frecuentes
    ========================================================================== */
