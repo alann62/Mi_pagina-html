@@ -479,11 +479,16 @@ a { color: var(--color-accent); text-decoration: none; }
 .process-step h3 { color: var(--color-on-primary); }
 .process-step p { color: #94A3B8; margin-bottom: 0; font-size: 0.95rem; }
 
-/* Efecto "video" al scrollear: la línea del proceso se dibuja en verde y cada
-   número se enciende en secuencia a medida que el usuario baja -- mejora
-   progresiva pura en CSS. Sin soporte para scroll-driven animations, o con
-   prefers-reduced-motion, el grid queda exactamente como estaba: la línea
-   gris fija de siempre y los 3 números ya visibles, nada oculto. */
+/* Pista y gota de agua del efecto de scroll (ver bloque de abajo) -- ocultas
+   por default; solo se muestran donde el navegador soporta el efecto. */
+.process-flow-track { display: none; }
+
+/* Efecto "video" al scrollear: una gota de agua viaja por la línea del
+   proceso (celeste, como el efluente tratado) y cada número se enciende a
+   su paso -- mejora progresiva pura en CSS. Sin soporte para scroll-driven
+   animations, o con prefers-reduced-motion, el grid queda exactamente como
+   estaba: la línea gris fija de siempre, sin gota, y los 3 números ya
+   visibles, nada oculto. */
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     /* El timeline se ancla a TODA la sección (título + grid), no solo a la fila
@@ -501,11 +506,44 @@ a { color: var(--color-accent); text-decoration: none; }
       left: calc(16.66% + 4px);
       right: calc(16.66% + 4px);
       height: 2px;
-      background: var(--color-green);
+      background: linear-gradient(90deg, #7DD3FC, #0EA5E9);
       transform-origin: left center;
       transform: scaleX(0);
       z-index: 0;
       animation-name: process-line-draw;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --process-reveal;
+      animation-range: 15% 75%;
+    }
+
+    /* Pista invisible del mismo largo que la línea -- container-type permite
+       que la gota se mueva en "cqw" (% del ancho de ESTA pista), así el
+       recorrido siempre llega justo al último número sea cual sea el ancho
+       de pantalla, sin animar left/width (que dispara layout). */
+    .process-grid-3 .process-flow-track {
+      display: block;
+      position: absolute;
+      top: 26px;
+      left: calc(16.66% + 4px);
+      right: calc(16.66% + 4px);
+      height: 1px;
+      container-type: inline-size;
+      z-index: 2;
+    }
+    .process-grid-3 .process-flow-drop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      margin-top: -7px;
+      margin-left: -7px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #E0F7FF, #0EA5E9 75%);
+      box-shadow: 0 0 10px 2px rgba(14, 165, 233, 0.65);
+      opacity: 0;
+      animation-name: process-water-flow;
       animation-timing-function: linear;
       animation-fill-mode: both;
       animation-timeline: --process-reveal;
@@ -530,6 +568,13 @@ a { color: var(--color-accent); text-decoration: none; }
       animation-range: 55% 85%;
     }
   }
+}
+
+@keyframes process-water-flow {
+  0% { transform: translateX(0); opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { transform: translateX(100cqw); opacity: 0; }
 }
 
 @keyframes process-line-draw {
