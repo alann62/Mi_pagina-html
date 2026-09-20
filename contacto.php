@@ -49,11 +49,13 @@ $tipo_efluente = limpiar($_POST['tipo_efluente'] ?? '');
 $objetivo = limpiar($_POST['objetivo'] ?? '');
 $mensaje  = trim($_POST['mensaje'] ?? ''); // este sí puede tener saltos de línea, va en el cuerpo
 
-if ($nombre === '' || $empresa === '' || $email === '' || $telefono === '' || $mensaje === '') {
+// El email es opcional (muchos contactos solo dejan el teléfono) -- lo único
+// obligatorio es tener alguna forma de contactarlos: nombre, empresa, teléfono y mensaje.
+if ($nombre === '' || $empresa === '' || $telefono === '' || $mensaje === '') {
   responder(false, 'Faltan campos obligatorios.');
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
   responder(false, 'El email no es válido.');
 }
 
@@ -62,16 +64,18 @@ $asunto = 'Nueva consulta técnica - HidraReco';
 $cuerpo = "Nueva consulta desde el formulario de hidrareco.com.ar\n\n"
   . "Nombre y Apellido: {$nombre}\n"
   . "Empresa: {$empresa}\n"
-  . "Email: {$email}\n"
+  . "Email: " . ($email !== '' ? $email : '-') . "\n"
   . "Teléfono / WhatsApp: {$telefono}\n"
   . "Caudal estimado: " . ($caudal !== '' ? $caudal : '-') . "\n"
   . "Tipo de efluente: " . ($tipo_efluente !== '' ? $tipo_efluente : '-') . "\n"
   . "Objetivo del servicio: " . ($objetivo !== '' ? $objetivo : '-') . "\n\n"
   . "Mensaje:\n{$mensaje}\n";
 
-$headers = "From: HidraReco Web <" . REMITENTE . ">\r\n"
-  . "Reply-To: {$nombre} <{$email}>\r\n"
-  . "Content-Type: text/plain; charset=UTF-8";
+$headers = "From: HidraReco Web <" . REMITENTE . ">\r\n";
+if ($email !== '') {
+  $headers .= "Reply-To: {$nombre} <{$email}>\r\n";
+}
+$headers .= "Content-Type: text/plain; charset=UTF-8";
 
 $enviado = mail(DESTINATARIO, $asunto, $cuerpo, $headers);
 

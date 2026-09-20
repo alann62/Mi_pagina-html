@@ -1120,8 +1120,8 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="form-row">
-                  <label for="f-email" class="block text-xs font-semibold text-slate-700 mb-1">Email Corporativo *</label>
-                  <input type="email" id="f-email" name="email" required placeholder="ejemplo@empresa.com" aria-describedby="error-email" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-600 focus:bg-white transition-all">
+                  <label for="f-email" class="block text-xs font-semibold text-slate-700 mb-1">Email de contacto</label>
+                  <input type="email" id="f-email" name="email" placeholder="ejemplo@empresa.com" aria-describedby="error-email" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-600 focus:bg-white transition-all">
                   <p id="error-email" class="mt-1 text-[11px] text-red-600"></p>
                 </div>
                 <div class="form-row">
@@ -1408,7 +1408,7 @@
       const validators = {
         nombre: (v) => (v.trim().length >= 3 ? '' : 'Ingresá tu nombre completo.'),
         empresa: (v) => (v.trim().length >= 2 ? '' : 'Ingresá el nombre de tu empresa.'),
-        email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Ingresá un email válido.'),
+        email: (v) => (v.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Ingresá un email válido, o dejalo vacío.'),
         telefono: (v) => (v.trim().length >= 6 ? '' : 'Ingresá un teléfono de contacto.'),
         mensaje: (v) => (v.trim().length >= 10 ? '' : 'Contanos un poco más sobre tu planta (mínimo 10 caracteres).')
       };
