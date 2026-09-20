@@ -79,8 +79,25 @@ $headers .= "Content-Type: text/plain; charset=UTF-8";
 
 $enviado = mail(DESTINATARIO, $asunto, $cuerpo, $headers);
 
-if ($enviado) {
-  responder(true);
-} else {
+if (!$enviado) {
   responder(false, 'No se pudo enviar el mail. Probá de nuevo o escribinos por WhatsApp.');
 }
+
+// Mail de confirmación automático a quien consultó (solo si dejó su email).
+// Va con @ para que, si este segundo envío falla, no arrastre a un error la
+// respuesta al usuario -- la consulta ya le llegó a HidraReco igual.
+if ($email !== '') {
+  $asunto_confirmacion = 'Recibimos tu consulta - HidraReco';
+  $cuerpo_confirmacion = "Hola {$nombre},\n\n"
+    . "Recibimos tu consulta sobre tratamiento de efluentes en HidraReco. "
+    . "Un ingeniero de nuestro equipo la va a revisar y te va a contactar dentro "
+    . "de las próximas 24 hs hábiles para coordinar los próximos pasos.\n\n"
+    . "Si es algo urgente, también podés escribirnos directo por WhatsApp:\n"
+    . "https://wa.me/5491126704249\n\n"
+    . "Gracias por confiar en HidraReco.\n"
+    . "Equipo técnico de HidraReco\n";
+  $headers_confirmacion = "From: HidraReco <" . REMITENTE . ">\r\nContent-Type: text/plain; charset=UTF-8";
+  @mail($email, $asunto_confirmacion, $cuerpo_confirmacion, $headers_confirmacion);
+}
+
+responder(true);
